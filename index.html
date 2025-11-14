@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartHome Secure – Dashboard</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">SH</div>
+      <div class="sidebar-title">
+        <span>SmartHome Secure</span>
+        <span>Dashboard Sécurité IoT</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Navigation</div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="devices.html" class="nav-link">
+          <span class="icon">💡</span>
+          <span>Objets connectés</span>
+        </a>
+        <a href="security.html" class="nav-link">
+          <span class="icon">🛡️</span>
+          <span>Sécurité</span>
+        </a>
+        <a href="charts.html" class="nav-link">
+          <span class="icon">📈</span>
+          <span>Données & Graphiques</span>
+        </a>
+        <a href="about.html" class="nav-link">
+          <span class="icon">ℹ️</span>
+          <span>À propos</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      Projet M1 IHM – 2025<br>
+      <span class="badge badge-soft">Prototype pédagogique</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="page-title-group">
+        <h1 class="page-title">Vue d’ensemble</h1>
+        <p class="page-subtitle">Résumé temps réel de l’état de la maison connectée.</p>
+      </div>
+
+      <div class="security-toggle">
+        <button id="security-toggle" class="btn btn-outline">
+          <span class="status-dot"></span>
+          <span id="security-toggle-label">Mode sécurité : OFF</span>
+        </button>
+        <span class="badge badge-soft">Simulation</span>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="cards-grid">
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Température moyenne</h2>
+              <p class="card-subtext">Sur les dernières minutes</p>
+            </div>
+            <span class="badge badge-soft">°C</span>
+          </div>
+          <div class="card-value" id="card-temp">– °C</div>
+          <p class="card-subtext" id="card-temp-trend">Calcul en cours…</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Objets actifs</h2>
+              <p class="card-subtext">Lumières, capteurs, caméras</p>
+            </div>
+            <span class="badge badge-soft">IoT</span>
+          </div>
+          <div class="card-value" id="card-devices-on">– / –</div>
+          <p class="card-subtext" id="card-devices-desc">Récupération des données…</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Alertes récentes</h2>
+              <p class="card-subtext">Mouvement, intrusion, anomalies</p>
+            </div>
+            <span class="badge badge-danger">Sécurité</span>
+          </div>
+          <div class="card-value" id="card-alerts-count">–</div>
+          <p class="card-subtext" id="card-alerts-last">Aucune donnée pour le moment.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Mode Sécurité</h2>
+              <p class="card-subtext">Configuration globale</p>
+            </div>
+            <span class="badge badge-soft">Global</span>
+          </div>
+          <div class="card-value" id="card-security-state">OFF</div>
+          <p class="card-subtext">
+            Active un profil plus strict (verrouillage des portes, activation des capteurs sensibles, augmentation de la surveillance).
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+  import { getSecurityMode, onSecurityModeChanged } from './js/app.js';
+  import { getTemperatureHistory, getDevices, getAlerts } from './js/data_simulator.js';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Carte température
+    const tempEl = document.getElementById('card-temp');
+    const tempTrendEl = document.getElementById('card-temp-trend');
+    const updateTempCard = () => {
+      const history = getTemperatureHistory();
+      if (!history.length) return;
+      const last = history[history.length - 1];
+      const avg = history.reduce((acc, p) => acc + p.value, 0) / history.length;
+      tempEl.textContent = `${last.value.toFixed(1)} °C`;
+      tempTrendEl.textContent = `Moyenne: ${avg.toFixed(1)} °C (${history.length} mesures)`;
+    };
+
+    // Carte devices
+    const devicesOnEl = document.getElementById('card-devices-on');
+    const devicesDescEl = document.getElementById('card-devices-desc');
+    const updateDevicesCard = () => {
+      const devices = getDevices();
+      const total = devices.length;
+      const on = devices.filter(d => d.state === 'on').length;
+      devicesOnEl.textContent = `${on} / ${total}`;
+      devicesDescEl.textContent = `${on} objet(s) actuellement actifs.`;
+    };
+
+    // Carte alertes
+    const alertsCountEl = document.getElementById('card-alerts-count');
+    const alertsLastEl = document.getElementById('card-alerts-last');
+    const updateAlertsCard = () => {
+      const alerts = getAlerts();
+      alertsCountEl.textContent = alerts.length;
+      if (alerts.length > 0) {
+        const last = alerts[0];
+        alertsLastEl.textContent = `${last.type} – ${last.location} (${last.severity.toUpperCase()})`;
+      } else {
+        alertsLastEl.textContent = 'Aucune alerte pour le moment.';
+      }
+    };
+
+    // Carte mode sécurité
+    const securityStateEl = document.getElementById('card-security-state');
+    const refreshSecurityCard = () => {
+      securityStateEl.textContent = getSecurityMode() ? 'ON' : 'OFF';
+    };
+
+    refreshSecurityCard();
+    updateTempCard();
+    updateDevicesCard();
+    updateAlertsCard();
+
+    setInterval(() => {
+      updateTempCard();
+      updateDevicesCard();
+      updateAlertsCard();
+      refreshSecurityCard();
+    }, 4000);
+
+    onSecurityModeChanged(refreshSecurityCard);
+  });
+</script>
+</body>
+</html>
