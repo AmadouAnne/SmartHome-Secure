@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartHome Secure – Objets connectés</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">SH</div>
+      <div class="sidebar-title">
+        <span>SmartHome Secure</span>
+        <span>Dashboard Sécurité IoT</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Navigation</div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="devices.html" class="nav-link active">
+          <span class="icon">💡</span>
+          <span>Objets connectés</span>
+        </a>
+        <a href="security.html" class="nav-link">
+          <span class="icon">🛡️</span>
+          <span>Sécurité</span>
+        </a>
+        <a href="charts.html" class="nav-link">
+          <span class="icon">📈</span>
+          <span>Données & Graphiques</span>
+        </a>
+        <a href="about.html" class="nav-link">
+          <span class="icon">ℹ️</span>
+          <span>À propos</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      Gestion des objets IoT<br>
+      <span class="badge badge-soft">Simulation locale</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="page-title-group">
+        <h1 class="page-title">Objets connectés</h1>
+        <p class="page-subtitle">
+          Supervision et contrôle des appareils (simulés) de la maison.
+        </p>
+      </div>
+
+      <div class="security-toggle">
+        <button id="security-toggle" class="btn btn-outline">
+          <span class="status-dot"></span>
+          <span id="security-toggle-label">Mode sécurité : OFF</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Pièce</th>
+            <th>Type</th>
+            <th>Critique</th>
+            <th>État</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          <tbody id="devices-table-body">
+          <!-- Rempli en JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+  import './js/app.js';
+  import './js/devices.js';
+</script>
+</body>
+</html>

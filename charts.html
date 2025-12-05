@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartHome Secure – Données & Graphiques</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">SH</div>
+      <div class="sidebar-title">
+        <span>SmartHome Secure</span>
+        <span>Dashboard Sécurité IoT</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Navigation</div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="devices.html" class="nav-link">
+          <span class="icon">💡</span>
+          <span>Objets connectés</span>
+        </a>
+        <a href="security.html" class="nav-link">
+          <span class="icon">🛡️</span>
+          <span>Sécurité</span>
+        </a>
+        <a href="charts.html" class="nav-link active">
+          <span class="icon">📈</span>
+          <span>Données & Graphiques</span>
+        </a>
+        <a href="about.html" class="nav-link">
+          <span class="icon">ℹ️</span>
+          <span>À propos</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      Visualisation des données<br>
+      <span class="badge badge-soft">Chart.js</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="page-title-group">
+        <h1 class="page-title">Données & Graphiques</h1>
+        <p class="page-subtitle">
+          Visualisation des températures et des alertes au fil du temps.
+        </p>
+      </div>
+
+      <div class="security-toggle">
+        <button id="security-toggle" class="btn btn-outline">
+          <span class="status-dot"></span>
+          <span id="security-toggle-label">Mode sécurité : OFF</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="section cards-grid">
+      <article class="card chart-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Température maison</h2>
+            <p class="card-subtext">Historique des mesures simulées</p>
+          </div>
+          <span class="badge badge-soft">Temps réel</span>
+        </div>
+        <canvas id="temperatureChart"></canvas>
+      </article>
+
+      <article class="card chart-card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Nombre d’alertes</h2>
+            <p class="card-subtext">Cumul sur la période récente</p>
+          </div>
+          <span class="badge badge-soft">Sécurité</span>
+        </div>
+        <canvas id="alertsChart"></canvas>
+      </article>
+    </section>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="module">
+  import './js/app.js';
+  import './js/charts.js';
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartHome Secure – Sécurité</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">SH</div>
+      <div class="sidebar-title">
+        <span>SmartHome Secure</span>
+        <span>Dashboard Sécurité IoT</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Navigation</div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="devices.html" class="nav-link">
+          <span class="icon">💡</span>
+          <span>Objets connectés</span>
+        </a>
+        <a href="security.html" class="nav-link active">
+          <span class="icon">🛡️</span>
+          <span>Sécurité</span>
+        </a>
+        <a href="charts.html" class="nav-link">
+          <span class="icon">📈</span>
+          <span>Données & Graphiques</span>
+        </a>
+        <a href="about.html" class="nav-link">
+          <span class="icon">ℹ️</span>
+          <span>À propos</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      Journal de sécurité<br>
+      <span class="badge badge-soft">Alertes simulées</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="page-title-group">
+        <h1 class="page-title">Sécurité & Alertes</h1>
+        <p class="page-subtitle">
+          Mode sécurité global, journal d’événements et sensibilisation IoT.
+        </p>
+      </div>
+
+      <div class="security-toggle">
+        <button id="security-toggle" class="btn btn-outline">
+          <span class="status-dot"></span>
+          <span id="security-toggle-label">Mode sécurité : OFF</span>
+        </button>
+        <button id="simulate-alert-btn" class="btn btn-primary">
+          Déclencher une alerte fictive
+        </button>
+      </div>
+    </header>
+
+    <section class="section cards-grid">
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Résumé sécurité</h2>
+            <p class="card-subtext">État global simulé</p>
+          </div>
+          <span class="badge badge-soft">Synthèse</span>
+        </div>
+        <p class="card-subtext" id="security-summary">
+          Calcul en cours…
+        </p>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Bonnes pratiques IoT</h2>
+            <p class="card-subtext">Sensibilisation intégrée</p>
+          </div>
+          <span class="badge badge-soft">Conseils</span>
+        </div>
+        <ul class="card-subtext" style="list-style: disc; margin-left: 1.2rem;">
+          <li>Changer les mots de passe par défaut des routeurs et caméras.</li>
+          <li>Mettre à jour régulièrement le firmware des objets connectés.</li>
+          <li>Segmenter le réseau (Wi-Fi invité pour les objets IoT).</li>
+          <li>Désactiver les services inutiles (UPnP, accès distant non chiffré).</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <h2 class="card-title">Journal des alertes</h2>
+      <p class="card-subtext">Derniers événements simulés (mouvement, ouverture de porte, anomalies…)</p>
+      <div class="alert-list" id="alert-list">
+        <!-- Rempli en JS -->
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+  import './js/app.js';
+  import './js/security.js';
+</script>
+</body>
+</html>

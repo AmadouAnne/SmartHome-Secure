@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartHome Secure – À propos</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="app-layout">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-badge">SH</div>
+      <div class="sidebar-title">
+        <span>SmartHome Secure</span>
+        <span>Dashboard Sécurité IoT</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="nav-section-title">Navigation</div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">
+          <span class="icon">🏠</span>
+          <span>Dashboard</span>
+        </a>
+        <a href="devices.html" class="nav-link">
+          <span class="icon">💡</span>
+          <span>Objets connectés</span>
+        </a>
+        <a href="security.html" class="nav-link">
+          <span class="icon">🛡️</span>
+          <span>Sécurité</span>
+        </a>
+        <a href="charts.html" class="nav-link">
+          <span class="icon">📈</span>
+          <span>Données & Graphiques</span>
+        </a>
+        <a href="about.html" class="nav-link active">
+          <span class="icon">ℹ️</span>
+          <span>À propos</span>
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      Documentation projet<br>
+      <span class="badge badge-soft">M1 IHM</span>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="main-header">
+      <div class="page-title-group">
+        <h1 class="page-title">À propos du projet</h1>
+        <p class="page-subtitle">
+          Présentation, objectifs pédagogiques et aspects techniques.
+        </p>
+      </div>
+
+      <div class="security-toggle">
+        <button id="security-toggle" class="btn btn-outline">
+          <span class="status-dot"></span>
+          <span id="security-toggle-label">Mode sécurité : OFF</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="section about-grid">
+      <article class="about-box">
+        <h2>SmartHome Secure – Description</h2>
+        <p>
+          SmartHome Secure est une application Web de supervision et de contrôle
+          <strong>simulé</strong> d’objets connectés, développée dans le cadre du module
+          <strong>Interface Homme-Machine (M1 IHM)</strong>.
+        </p>
+        <p>
+          L’objectif est de proposer une interface ergonomique permettant :
+        </p>
+        <ul>
+          <li>de surveiller l’état des objets (lumières, capteurs, caméras…)</li>
+          <li>de contrôler certains objets (ON/OFF, ouverture/fermeture)</li>
+          <li>de visualiser des alertes de sécurité (mouvement, intrusion, anomalies)</li>
+          <li>d’activer un <strong>mode sécurité global</strong></li>
+        </ul>
+        <p>
+          Toute la logique est gérée côté client en JavaScript, avec des données
+          simulées, ce qui permet de se concentrer sur l’IHM et l’architecture front.
+        </p>
+      </article>
+
+      <article class="about-box">
+        <h2>Aspects IHM & pédagogiques</h2>
+        <ul>
+          <li>Application Web en <strong>HTML / CSS / JavaScript</strong>.</li>
+          <li>Interface organisée en plusieurs vues : Dashboard, Objets, Sécurité, Graphiques, À propos.</li>
+          <li>Thème sombre orienté <strong>sécurité / cybersécurité</strong>.</li>
+          <li>Séparation claire entre :
+            <ul>
+              <li>la logique (fichiers JS modulaires)</li>
+              <li>la présentation (pages HTML + CSS)</li>
+            </ul>
+          </li>
+          <li>Utilisation d’<strong>IA</strong> pour aider à la conception, la structuration et la documentation.</li>
+        </ul>
+      </article>
+
+      <article class="about-box">
+        <h2>Technologies utilisées</h2>
+        <ul>
+          <li>HTML5, CSS3, JavaScript (modules ES6)</li>
+          <li>Chart.js pour la visualisation des données</li>
+          <li>Gestion d’état simple via <code>localStorage</code> (mode sécurité)</li>
+        </ul>
+      </article>
+
+      <article class="about-box">
+        <h2>Équipe & organisation</h2>
+        <p>
+          Cette section peut détailler :
+        </p>
+        <ul>
+          <li>les membres de l’équipe (noms, rôles)</li>
+          <li>la gestion du dépôt Git (branches, workflow)</li>
+          <li>les étapes du processus : Création, Design, Dev, Déploiement</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+  import './js/app.js';
+</script>
+</body>
+</html>
